@@ -13,8 +13,8 @@ const SpecificData = () => {
     const loader = useParams()
 
     const [shotData, setShotData] = useState(null);
-    const shotId = loader?.id// Replace with the actual shot ID
-    const accessToken = '98a8331a63048f0f3352cd68bac50504434e7ad76fea14018d7c5f4c66da359c'; // Replace with your access token
+    const shotId = loader?.id
+    const accessToken = '98a8331a63048f0f3352cd68bac50504434e7ad76fea14018d7c5f4c66da359c';
 
 
     useEffect(() => {
@@ -27,7 +27,6 @@ const SpecificData = () => {
                 });
 
                 if (response.status === 200) {
-                    // setShotData(response.data);
                     const data = response.data
                     data.description = removeHtmlTags(data.description);
                     setShotData(data);
@@ -42,8 +41,6 @@ const SpecificData = () => {
         fetchShot();
     }, [shotId, accessToken]);
 
-    // const cleanedDescription = description.replace(/<\/?p>/g, '');
-
     return (
         <div className="container mt-10 mb-10">
             {shotData ? (
@@ -54,7 +51,7 @@ const SpecificData = () => {
                     <p className="text-end font-bold mt-5">{shotData?.published_at}</p>
                 </div>
             ) : (
-                <p className="font-bold text-4xl text-red-500">Loading...</p>
+                <p className="text-center font-bold text-4xl text-gray-500">Loading...</p>
             )}
         </div>
     );
